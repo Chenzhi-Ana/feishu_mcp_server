@@ -1,0 +1,19 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - webhook
+    properties:
+      webhook:
+        type: string
+        description: "飞书机器人webhook地址, 格式: URL#SECRET"
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({ command: 'python', args: ['bot.py', '--webhook', config.webhook] })
+  exampleConfig:
+    webhook: http://example.com/webhook#mysecret
