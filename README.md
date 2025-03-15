@@ -1,4 +1,5 @@
 # 飞书MCP机器人
+[![smithery badge](https://smithery.ai/badge/@Chenzhi-Ana/feishu_mcp_server)](https://smithery.ai/server/@Chenzhi-Ana/feishu_mcp_server)
 
 ## 目标
 通过将飞书机器人用MCP server 代理，可以让cursor或者Claude的用户，可以结合LLM的模型后使用飞书机器人执行业务逻辑
@@ -23,5 +24,13 @@
 uv --directory YOUR_PATH run bot.py --webhook YOUR_WEB_HOOK
 
 替换这两部分为你的路径和机器人地址即可
-YOUR_PATH
-YOUR_WEB_HOOK
+
+### Installing via Smithery
+
+To install feishu_mcp_server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@Chenzhi-Ana/feishu_mcp_server):
+
+```bash
+npx -y @smithery/cli install @Chenzhi-Ana/feishu_mcp_server --client claude
+```
+
+### Installing Manually
