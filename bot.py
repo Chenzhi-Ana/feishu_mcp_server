@@ -21,20 +21,18 @@ import hmac
 import requests
 from datetime import datetime
 
-# 默认webhook配置
-DEFAULT_WEBHOOK_URL = "https://open.feishu.cn/open-apis/bot/v2/hook/3fa479c9-fb0a-477b-a216-3b02c748ea1c"
-DEFAULT_WEBHOOK_SECRET = "3fa479c9-fb0a-477b-a216-3b02c748ea1c"
-
 # 解析命令行参数
 def parse_args():
     parser = argparse.ArgumentParser(description='飞书机器人MCP服务')
-    parser.add_argument('--webhook', type=str, help='飞书机器人webhook地址，格式为URL或URL#SECRET')
+    parser.add_argument('--webhook', type=str, required=True, help='飞书机器人webhook地址，格式为URL或URL#SECRET')
     return parser.parse_args()
 
 # 从webhook参数解析URL和密钥
 def parse_webhook(webhook_param):
     if not webhook_param:
-        return DEFAULT_WEBHOOK_URL, DEFAULT_WEBHOOK_SECRET
+        print("错误: 必须提供webhook参数")
+        print("用法: python bot.py --webhook YOUR_WEBHOOK_URL")
+        sys.exit(1)
     
     # 检查是否包含#分隔符
     if '#' in webhook_param:
@@ -52,8 +50,9 @@ def parse_webhook(webhook_param):
         secret = path_parts[-1]
         return url, secret
     
-    # 如果无法提取，使用默认密钥
-    return url, DEFAULT_WEBHOOK_SECRET
+    print("错误: 无法从webhook URL中提取密钥")
+    print("请使用格式: --webhook URL#SECRET")
+    sys.exit(1)
 
 # 解析参数
 args = parse_args()
