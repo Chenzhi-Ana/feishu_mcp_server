@@ -1,5 +1,5 @@
 {
   "name": "feishu_bot",
   "description": "飞书机器人MCP服务，可以通过该服务向飞书发送消息。必须提供webhook参数，格式为URL或URL#SECRET",
-  "command": "uv --directory YOUR_PATH run bot.py --webhook YOUR_WEBHOOK_URL"
+  "command": "uv run bot.py --webhook YOUR_WEBHOOK_URL"
 } 
